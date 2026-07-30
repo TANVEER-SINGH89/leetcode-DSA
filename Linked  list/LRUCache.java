@@ -1,0 +1,73 @@
+import java.util.*;
+class LRUCache {
+class Node{
+    int key ,val;
+    Node prev,next;
+    Node(int key,int val){
+        this.key=key;
+        this.val=val;
+    }
+}
+
+
+
+private final int capacity;
+private final Map<Integer,Node> map;
+private final Node head;
+private final Node tail;
+    public LRUCache(int capacity) {
+        this.capacity=capacity;
+        this.map=new HashMap<>();
+        head =new Node(0,0);
+        tail = new Node(0,0);
+        head .next=tail;
+        tail.prev=head;
+    }
+    
+    public int get(int key) {
+        if(!map.containsKey(key)){
+            return -1;
+        }
+        Node node=map.get(key);
+        remove(node);
+        addToTail(node);
+        return node.val;
+        
+    }
+    
+    public void put(int key, int value) {
+        if(map.containsKey(key)){
+            Node node =map.get(key);
+            node.val=value;
+            remove (node);
+            addToTail(node);
+            return;
+        }
+        Node node =new Node(key,value);
+        map.put(key,node);
+        addToTail(node);
+        if(map.size()>capacity){
+            Node lru=head.next;
+            remove(lru);
+            map.remove(lru.key);
+        }
+    }
+    private void remove (Node node){
+        node.prev.next=node.next;
+        node.next.prev=node.prev;
+    }
+    private void addToTail(Node node){
+        Node prev =tail.prev;
+        prev.next=node;
+        node.prev=prev;
+        node.next=tail;
+        tail.prev=node;
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
