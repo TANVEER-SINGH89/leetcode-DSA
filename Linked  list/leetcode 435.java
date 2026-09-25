@@ -1,5 +1,11 @@
+import java.util.Arrays;
+
 class Solution {
     public int eraseOverlapIntervals(int[][] intervals) {
+
+        if (intervals == null || intervals.length == 0) {
+            return 0;
+        }
 
         Arrays.sort(intervals, (a, b) -> Integer.compare(a[1], b[1]));
 

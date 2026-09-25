@@ -1,7 +1,13 @@
+import java.util.Arrays;
+
 class Solution {
     public int findMinArrowShots(int[][] points) {
 
-        Arrays.sort(points, (a, b) -> Long.compare((long)a[1], (long)b[1]));
+        if (points == null || points.length == 0) {
+            return 0;
+        }
+
+        Arrays.sort(points, (a, b) -> Integer.compare(a[1], b[1]));
 
         int arrows = 1;
         long arrowPos = points[0][1];

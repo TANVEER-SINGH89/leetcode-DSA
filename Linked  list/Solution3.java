@@ -5,6 +5,10 @@ class Solution {
 
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
 
+        if (image == null || image.length == 0 || image[0].length == 0) {
+            return image;
+        }
+
         rows = image.length;
         cols = image[0].length;
 

@@ -35,6 +35,10 @@ private final Node tail;
     }
     
     public void put(int key, int value) {
+        if (capacity == 0) {
+            return;
+        }
+
         if(map.containsKey(key)){
             Node node =map.get(key);
             node.val=value;

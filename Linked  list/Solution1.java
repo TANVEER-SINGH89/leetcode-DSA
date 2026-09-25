@@ -5,6 +5,10 @@ class Solution1 {
 
     public int maxAreaOfIsland(int[][] grid) {
 
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+
         rows = grid.length;
         cols = grid[0].length;
 

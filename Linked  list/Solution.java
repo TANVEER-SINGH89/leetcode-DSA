@@ -2,8 +2,12 @@ import java.util.*;
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
 
+        if (lists == null || lists.length == 0) {
+            return null;
+        }
+
         PriorityQueue<ListNode> pq =
-                new PriorityQueue<>((a, b) -> a.val - b.val);
+                new PriorityQueue<>((a, b) -> Integer.compare(a.val, b.val));
 
         for (ListNode node : lists) {
             if (node != null)

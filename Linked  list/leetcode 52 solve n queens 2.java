@@ -1,5 +1,9 @@
 class Solution {
     public int totalNQueens(int n) {
+        if (n == 0) {
+            return 1;
+        }
+
         return solve(0, n, new boolean[n], new boolean[2 * n - 1], new boolean[2 * n - 1]);
     }
 
